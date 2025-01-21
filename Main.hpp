@@ -5,7 +5,9 @@
 #include <string>
 #include <Windows.h>
 #include <cstdio>
-
+#include <memory>
+#include "Instrument.hpp"
+	
 using namespace std;
 
 int main();

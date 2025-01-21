@@ -33,8 +33,8 @@ public:
 class Guitare : public Instrument {
 public:
 	Guitare(string nom) : Instrument(nom) {};
-	void jouer();
-	void afficher();
+	void jouer() const;
+	void afficher() const;
 };
 
 #endif Instrument_HPP

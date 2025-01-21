@@ -16,5 +16,34 @@ int main()
 
 	cout << u8"Bienvenue dans ce générateur de musique interactif !" << endl;
 
+	cout << u8"Veuillez choisir un instrument parmi les suivants :" << endl;
+	cout << "1. Piano" << endl;
+	cout << "2. Xylophone" << endl;
+	cout << "3. Guitare" << endl;
 
+	cout << "> Choix: ";
+	int choix;
+	cin >> choix;
+
+	shared_ptr<Instrument> instrument;
+	if (choix == 1)
+	{
+		instrument = make_shared<Piano>("Piano");
+	}
+	else if (choix == 2)
+	{
+		instrument = make_shared<Xylophone>("Xylophone");
+	}
+	else if (choix == 3)
+	{
+		instrument = make_shared<Guitare>("Guitare");
+	}
+	else
+	{
+		cout << "Choix invalide" << endl;
+		return 1;
+	}
+
+	cout << endl;
+	instrument->afficher();
 }
