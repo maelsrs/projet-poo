@@ -37,4 +37,10 @@ public:
 	void afficher() const;
 };
 
+class Ocarina : public Instrument {
+public:
+	Ocarina(string nom) : Instrument(nom) {};
+	void jouer() const;
+	void afficher() const;
+};
 #endif Instrument_HPP

@@ -1,5 +1,4 @@
-﻿#include "Main.hpp"
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <Windows.h>
 #include <cstdio>
@@ -28,6 +27,7 @@ int main()
 	cout << "1. Piano" << endl;
 	cout << "2. Xylophone" << endl;
 	cout << "3. Guitare" << endl;
+	cout << "4. Ocarina" << endl;
 
 	cout << "> Choix: ";
 	int choix;
@@ -45,6 +45,10 @@ int main()
 	else if (choix == 3)
 	{
 		instrument = make_shared<Guitare>("Guitare");
+	}
+	else if (choix == 4)
+	{
+		instrument = make_shared<Ocarina>("Ocarina");
 	}
 	else
 	{
