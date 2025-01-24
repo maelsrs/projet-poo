@@ -43,4 +43,4 @@ public:
 	void jouer() const;
 	void afficher() const;
 };
-#endif Instrument_HPP
+#endif
