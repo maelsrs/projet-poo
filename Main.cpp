@@ -77,7 +77,7 @@ void selectInstrument() {
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
-    setvbuf(stdout, nullptr, _IOFBF, 1000);
+	setvbuf(stdout, nullptr, _IOFBF, 1000);
 
 
     cout << "___  ___          _           _                 " << endl;
