@@ -9,9 +9,7 @@ Instrument::Instrument(string nom) : m_nom(nom)
 
 void Piano::jouer(int frequency, int duration) const
 {
-    for (int i = 0; i < 3; i++) {
-        play_note(frequency + (i * 5), duration / 3);
-    }
+     play_note(frequency, duration);
 }
 
 void Piano::afficher() const
