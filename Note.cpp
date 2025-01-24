@@ -1,4 +1,9 @@
 ﻿#include "Note.hpp"
+#include <Windows.h>
+#include <utilapiset.h>
+#include <mmsystem.h>
+#include "Instrument.hpp"
+#pragma comment(lib, "winmm.lib")
 
 map<string, int> note_to_frequency = {
 	{"B0", 31}, {"C1", 33}, {"C#1", 35}, {"D1", 37}, {"D#1", 39}, {"E1", 41}, {"F1", 44}, {"F#1", 46}, {"G1", 49}, {"G#1", 52},
@@ -13,8 +18,9 @@ map<string, int> note_to_frequency = {
 	{"G#7", 3322}, {"A7", 3520}, {"A#7", 3729}, {"B7", 3951}, {"C8", 4186}, {"C#8", 4435}, {"D8", 4699}, {"D#8", 4978}
 };
 
-void play_note(std::string note, int duration)
+void play_note(int frequency, int duration)
 {
+	Beep(frequency, duration);
 }
 
 int get_frequency(std::string note)

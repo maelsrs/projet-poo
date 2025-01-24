@@ -1,4 +1,7 @@
 ﻿#include "Partition.hpp"
+#include <Windows.h>
+#include <synchapi.h>
+
 
 struct NoteInfo {
     char key;
@@ -30,7 +33,7 @@ NoteInfo get_note(char key)
 }
 
 
-void readPartition(string filename)
+void readPartition(shared_ptr<Instrument> instrument, string filename)
 {
     ifstream f(filename);
     if (!f.is_open())
@@ -49,10 +52,16 @@ void readPartition(string filename)
             if (frequency != -1)
             {
                 cout << note << endl;
-                play_note(note, static_cast<int>(duration * 1000));
-            }
-        }
+				cout << frequency << endl;
+				cout << duration << endl;
+                instrument->jouer(frequency, static_cast<int>(duration*1000));
+			}
+		}
+		else {
+			Sleep(duration * 1000);
+		}
     }
+
 
     f.close();
 }
@@ -68,7 +77,7 @@ void playGame(shared_ptr<Instrument> instrument) {
 		char note = readInput();
 		if (note == 'q')
 		{
-			cout << "Fin du jeu" << endl;
+			cout << "Fin" << endl;
 			break;
 		}
 
@@ -101,5 +110,7 @@ void playGame(shared_ptr<Instrument> instrument) {
 			continue;
 		}
 		cout << note_info.solfege << endl;
+		int frequency = get_frequency(note_info.notation);
+		play_note(frequency, static_cast<int>(1000 / (speedMode + 1)));
 	}
 }

@@ -26,7 +26,7 @@ void selectMode(shared_ptr<Instrument> instrument) {
 		cout << "Veuillez entrer le nom du fichier de partition : ";
 		string filename;
 		cin >> filename;
-		readPartition(filename);
+		readPartition(instrument, filename);
 	}
 	else
 	{

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void readPartition(string filename);
+void readPartition(shared_ptr<Instrument> instrument, string filename);
 void playGame(shared_ptr<Instrument> instrument);
 
 #endif

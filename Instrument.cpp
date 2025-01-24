@@ -1,12 +1,17 @@
 ﻿#include "Instrument.hpp"
+#include <vector>
+#include "Note.hpp"
 
 Instrument::Instrument(string nom) : m_nom(nom)
 {
 }
 
 
-void Piano::jouer() const
+void Piano::jouer(int frequency, int duration) const
 {
+    for (int i = 0; i < 3; i++) {
+        play_note(frequency + (i * 5), duration / 3);
+    }
 }
 
 void Piano::afficher() const
@@ -36,8 +41,12 @@ void Piano::afficher() const
     cout << "       |_|/                                  |_|/" << endl;
 }
 
-void Xylophone::jouer() const
+void Xylophone::jouer(int frequency, int duration) const
 {
+    vector<int> harmonics = { frequency, frequency * 2, frequency * 3 };
+    for (int harmonic : harmonics) {
+        play_note(harmonic, duration / 3);
+    }
 }
 
 void Xylophone::afficher() const
@@ -60,8 +69,12 @@ void Xylophone::afficher() const
 }
 
 
-void Guitare::jouer() const
+void Guitare::jouer(int frequency, int duration) const
 {
+    vector<int> variations = { frequency, frequency - 10, frequency + 10 };
+    for (int variation : variations) {
+        play_note(variation, duration / 3);
+    }
 }
 
 void Guitare::afficher() const
@@ -82,8 +95,11 @@ void Guitare::afficher() const
     cout << " \\/" << endl;
 }
 
-void Ocarina::jouer() const
+void Ocarina::jouer(int frequency, int duration) const
 {
+    for (int i = 0; i < 2; i++) {
+        play_note(frequency - i * 3, duration / 2);
+    }
 }
 
 void Ocarina::afficher() const

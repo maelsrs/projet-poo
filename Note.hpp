@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void play_note(string note, int duration);
+void play_note(int frequency, int duration);
 int get_frequency(string note);
 string list_notes();
 
