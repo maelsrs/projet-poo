@@ -56,8 +56,6 @@ void readPartition(shared_ptr<Instrument> instrument, string filename)
             if (frequency != -1)
             {
                 cout << note << endl;
-				cout << frequency << endl;
-				cout << duration << endl;
                 instrument->jouer(frequency, static_cast<int>(duration*1000));  // Joue la note
 			}
 		}
