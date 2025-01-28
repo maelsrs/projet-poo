@@ -2,16 +2,19 @@
 #include <vector>
 #include "Note.hpp"
 
+// Implémentation du constructeur de la classe Instrument
+// Initialise le nom de l'instrument
 Instrument::Instrument(string nom) : m_nom(nom)
 {
 }
 
-
+// Implémentation de la méthode jouer pour la classe Piano
 void Piano::jouer(int frequency, int duration) const
 {
      play_note(frequency, duration);
 }
 
+// Affiche l'ASCII d'un piano
 void Piano::afficher() const
 {
     cout << "       __________________________________" << endl;
@@ -39,6 +42,7 @@ void Piano::afficher() const
     cout << "       |_|/                                  |_|/" << endl;
 }
 
+// Implémentation de la méthode jouer pour la classe Xylophone
 void Xylophone::jouer(int frequency, int duration) const
 {
     vector<int> harmonics = { frequency, frequency * 2, frequency * 3 };
@@ -47,6 +51,7 @@ void Xylophone::jouer(int frequency, int duration) const
     }
 }
 
+// Affiche l'ASCII d'un Xylophone
 void Xylophone::afficher() const
 {
     cout << u8"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" << endl;
@@ -66,7 +71,7 @@ void Xylophone::afficher() const
     cout << u8"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" << endl;
 }
 
-
+// Implémentation de la méthode jouer pour la classe Xylophone
 void Guitare::jouer(int frequency, int duration) const
 {
     vector<int> variations = { frequency, frequency - 10, frequency + 10 };
@@ -75,6 +80,7 @@ void Guitare::jouer(int frequency, int duration) const
     }
 }
 
+// Affiche l'ASCII d'une Guitare
 void Guitare::afficher() const
 {
     cout << "     _" << endl;
@@ -93,6 +99,7 @@ void Guitare::afficher() const
     cout << " \\/" << endl;
 }
 
+// Implémentation de la méthode jouer pour la classe Ocarina
 void Ocarina::jouer(int frequency, int duration) const
 {
     for (int i = 0; i < 2; i++) {
@@ -100,6 +107,7 @@ void Ocarina::jouer(int frequency, int duration) const
     }
 }
 
+// Affiche l'ASCII d'un Ocarina
 void Ocarina::afficher() const
 {
     cout << u8"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" << endl;

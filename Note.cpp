@@ -5,6 +5,7 @@
 #include "Instrument.hpp"
 #pragma comment(lib, "winmm.lib")
 
+// Map associant les noms des notes à leur fréquence en Hertz.
 map<string, int> note_to_frequency = {
 	{"B0", 31}, {"C1", 33}, {"C#1", 35}, {"D1", 37}, {"D#1", 39}, {"E1", 41}, {"F1", 44}, {"F#1", 46}, {"G1", 49}, {"G#1", 52},
 	{"A1", 55}, {"A#1", 58}, {"B1", 62}, {"C2", 65}, {"C#2", 69}, {"D2", 73}, {"D#2", 78}, {"E2", 82}, {"F2", 87}, {"F#2", 93},
@@ -18,11 +19,13 @@ map<string, int> note_to_frequency = {
 	{"G#7", 3322}, {"A7", 3520}, {"A#7", 3729}, {"B7", 3951}, {"C8", 4186}, {"C#8", 4435}, {"D8", 4699}, {"D#8", 4978}
 };
 
+// Fonction permettant de jouer une note en utilisant la fonction Beep
 void play_note(int frequency, int duration)
 {
 	Beep(frequency, duration);
 }
 
+// Fonction permettant d'obtenir la fréquence correspondant à une note donnée.
 int get_frequency(std::string note)
 {
 	if (note_to_frequency.find(note) == note_to_frequency.end()) // Permet de vérifier si la note est dans la map
@@ -34,6 +37,7 @@ int get_frequency(std::string note)
 	return note_to_frequency[note];
 }
 
+// Fonction listant toutes les notes disponibles dans la map avec leurs noms.
 std::string list_notes()
 {
 	std::string return_string = "";

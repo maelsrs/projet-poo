@@ -2,13 +2,14 @@
 #include <Windows.h>
 #include <synchapi.h>
 
-
+// Structure qui contient les informations d'une note
 struct NoteInfo {
     char key;
     std::string notation;
     std::string solfege;
 };
 
+// Table de correspondance entre les touches et les notes
 std::vector<NoteInfo> note_mapping = {
     {'a', "C4", "do"},
     {'z', "D4", "re"},
@@ -20,6 +21,7 @@ std::vector<NoteInfo> note_mapping = {
     {'i', "C5", "do"}
 };
 
+// Fonction qui retourne les informations d'une note en fonction de la touche pressée
 NoteInfo get_note(char key)
 {
 	for (NoteInfo note : note_mapping)
@@ -29,10 +31,12 @@ NoteInfo get_note(char key)
 			return note;
 		}
 	}
+
+	// Si la touche ne correspond à aucune note, retourne une note vide
 	return { '0', "0", "0" };
 }
 
-
+// Fonction pour lire une partition depuis un fichier
 void readPartition(shared_ptr<Instrument> instrument, string filename)
 {
     ifstream f(filename);
@@ -54,11 +58,11 @@ void readPartition(shared_ptr<Instrument> instrument, string filename)
                 cout << note << endl;
 				cout << frequency << endl;
 				cout << duration << endl;
-                instrument->jouer(frequency, static_cast<int>(duration*1000));
+                instrument->jouer(frequency, static_cast<int>(duration*1000));  // Joue la note
 			}
 		}
-		else {
-			Sleep(duration * 1000);
+		else { // Si la note est "0" ou "Unknown", on ne joue aucun son pendant la durée spécifiée
+			Sleep(duration * 1000); // Attend la durée spécifiée
 		}
     }
 
@@ -66,6 +70,7 @@ void readPartition(shared_ptr<Instrument> instrument, string filename)
     f.close();
 }
 
+// Fonction qui lance un jeu pour jouer des notes en appuyant sur des touches
 void playGame(shared_ptr<Instrument> instrument) {
     cout << "Appuyez sur les touches a,z,e,r,t,y,u,i pour jouer les notes" << endl;
     cout << "(Appuyez sur 'q' pour quitter)" << endl;
@@ -75,18 +80,18 @@ void playGame(shared_ptr<Instrument> instrument) {
 	while (true)
 	{
 		char note = readInput();
-		if (note == 'q')
+		if (note == 'q') // Si l'utilisateur appuie sur 'q', on quitte le jeu
 		{
 			cout << "Fin" << endl;
 			break;
 		}
 
-		if (note == 's')
+		if (note == 's') // Si l'utilisateur appuie sur 's', on change la vitesse
 		{
 			speedMode += 1;
 			if (speedMode == 3)
 			{
-				speedMode = 0;
+				speedMode = 0; // Retourne à la vitesse normale après la vitesse rapide
 			}
 			cout << "Mode de vitesse : ";
 			if (speedMode == 0)
@@ -104,13 +109,13 @@ void playGame(shared_ptr<Instrument> instrument) {
 			continue;
 		}
 
-		NoteInfo note_info = get_note(note);
+		NoteInfo note_info = get_note(note); // Récupère les informations de la note correspondant à la touche
 		if (note_info.key == '0')
 		{
 			continue;
 		}
-		cout << note_info.solfege << endl;
-		int frequency = get_frequency(note_info.notation);
-		play_note(frequency, static_cast<int>(1000 / (speedMode + 1)));
+		cout << note_info.solfege << endl; // Affiche le solfège de la note
+		int frequency = get_frequency(note_info.notation);  // Obtient la fréquence de la note
+		play_note(frequency, static_cast<int>(1000 / (speedMode + 1))); // Joue la note avec la bonne vitesse calculée à partir du mode de vitesse
 	}
 }

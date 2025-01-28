@@ -8,7 +8,10 @@
 
 using namespace std;
 
+// Définit une fonction pour sélectionner un mode de jeu (jouer ou lire une partition)
 void selectMode(shared_ptr<Instrument> instrument) {
+	// Demande à l'utilisateur de choisir un mode parmi les options disponibles
+
 	cout << u8"Veuillez choisir un mode parmi les suivants :" << endl;
 	cout << "1. Jouer" << endl;
 	cout << "2. Lire une partition" << endl;
@@ -18,7 +21,7 @@ void selectMode(shared_ptr<Instrument> instrument) {
 	if (choix == 1)
 	{
 		cout << "Mode de jeu : Jouer" << endl;
-		playGame(instrument);
+		playGame(instrument);  // Appelle la fonction pour jouer avec l'instrument sélectionné
 	}
 	else if (choix == 2)
 	{
@@ -26,7 +29,7 @@ void selectMode(shared_ptr<Instrument> instrument) {
 		cout << "Veuillez entrer le nom du fichier de partition : ";
 		string filename;
 		cin >> filename;
-		readPartition(instrument, filename);
+		readPartition(instrument, filename);  // Appelle la fonction pour lire une partition
 	}
 	else
 	{
@@ -35,6 +38,7 @@ void selectMode(shared_ptr<Instrument> instrument) {
 	}
 }
 
+// Définit une fonction pour sélectionner un instrument parmi plusieurs options
 void selectInstrument() {
 	cout << u8"Veuillez choisir un instrument parmi les suivants :" << endl;
 	cout << "1. Piano" << endl;
@@ -47,6 +51,8 @@ void selectInstrument() {
 	cin >> choix;
 
 	shared_ptr<Instrument> instrument;
+	// Crée une instance de l'instrument sélectionné
+
 	if (choix == 1)
 	{
 		instrument = make_shared<Piano>("Piano");
@@ -69,17 +75,24 @@ void selectInstrument() {
 		return;
 	}
 	cout << endl;
-	instrument->afficher();
+	instrument->afficher(); // Affiche l'ASCII art de l'instrument sélectionné
 	
 	selectMode(instrument);
 }
 
+
+/*
+	Fonction principale, appelée au démarrage du programme
+*/
+
 int main()
 {
-    SetConsoleOutputCP(CP_UTF8);
+	// Configure la sortie de la console pour prendre en charge l'encodage UTF-8
+	SetConsoleOutputCP(CP_UTF8);
 	setvbuf(stdout, nullptr, _IOFBF, 1000);
 
 
+	// Affiche un titre ASCII art 
     cout << "___  ___          _           _                 " << endl;
     cout << "|  \\/  |         (_)         | |                " << endl;
     cout << "| .  . |_   _ ___ _  ___ __ _| |     __ _ _   _ " << endl;
@@ -90,5 +103,6 @@ int main()
 
 	cout << u8"Bienvenue dans ce générateur de musique interactif !" << endl;
 
+	// Appelle la fonction principale de sélection d'instrument
 	selectInstrument();
 }
