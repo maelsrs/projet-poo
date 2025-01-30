@@ -47,6 +47,10 @@ void selectMode(shared_ptr<Instrument> instrument) {
 			case 3:
 				speedMode = 0.5;
 				break;
+			default:
+				cout << "Mode de vitesse invalide, vitesse normale sélectionnée" << endl;
+				speedMode = 1;
+				break;
 		}
 		readPartition(instrument, filename, speedMode);  // Appelle la fonction pour lire une partition
 	}
