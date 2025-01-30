@@ -79,7 +79,7 @@ void playGame(shared_ptr<Instrument> instrument) {
 		char note = readInput();
 		if (note == 'q') // Si l'utilisateur appuie sur 'q', on quitte le jeu
 		{
-			cout << "Fin" << endl;
+			cout << "Fin du jeu" << endl;
 			break;
 		}
 
