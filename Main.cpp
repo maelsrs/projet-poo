@@ -29,7 +29,26 @@ void selectMode(shared_ptr<Instrument> instrument) {
 		cout << "Veuillez entrer le nom du fichier de partition : ";
 		string filename;
 		cin >> filename;
-		readPartition(instrument, filename);  // Appelle la fonction pour lire une partition
+		double speedMode = 1;
+		cout << "Veuillez choisir un mode de vitesse parmi les suivants :" << endl;
+		cout << "1. Lent" << endl;
+		cout << "2. Normal" << endl;
+		cout << "3. Rapide" << endl;
+		cout << "> Choix: ";
+		cin >> speedMode;
+		switch (int(speedMode))
+		{
+			case 1:
+				speedMode = 1.5;
+				break;
+			case 2:
+				speedMode = 1;
+				break;
+			case 3:
+				speedMode = 0.5;
+				break;
+		}
+		readPartition(instrument, filename, speedMode);  // Appelle la fonction pour lire une partition
 	}
 	else
 	{

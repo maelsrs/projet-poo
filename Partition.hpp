@@ -13,7 +13,7 @@
 using namespace std;
 
 // Fonction qui lit une partition (un fichier texte) et joue les notes correspondantes
-void readPartition(shared_ptr<Instrument> instrument, string filename);
+void readPartition(shared_ptr<Instrument> instrument, string filename, double speedMode);
 
 // Fonction permettant de jouer une note
 void playGame(shared_ptr<Instrument> instrument);

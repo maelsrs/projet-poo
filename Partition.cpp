@@ -37,7 +37,7 @@ NoteInfo get_note(char key)
 }
 
 // Fonction pour lire une partition depuis un fichier
-void readPartition(shared_ptr<Instrument> instrument, string filename)
+void readPartition(shared_ptr<Instrument> instrument, string filename, double speedMode)
 {
     ifstream f(filename);
     if (!f.is_open())
@@ -55,11 +55,11 @@ void readPartition(shared_ptr<Instrument> instrument, string filename)
             int frequency = get_frequency(note);
             if (frequency != -1)
             {
-                instrument->jouer(frequency, static_cast<int>(duration*1000));  // Joue la note
+                instrument->jouer(frequency, static_cast<int>((duration*1000) * speedMode));  // Joue la note
 			}
 		}
 		else { // Si la note est "0" ou "Unknown", on ne joue aucun son pendant la durée spécifiée
-			Sleep(duration * 1000); // Attend la durée spécifiée
+			Sleep((duration * 1000) * speedMode); // Attend la durée spécifiée
 		}
     }
 
